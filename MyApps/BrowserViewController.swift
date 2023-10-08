@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  BrowserViewController.swift
 //  MyApps
 //
 //  Created by Andrey Vanakoff on 08/10/2023.
@@ -7,13 +7,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BrowserViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
     }
 
 
 }
-
