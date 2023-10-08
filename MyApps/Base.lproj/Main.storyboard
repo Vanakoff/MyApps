@@ -152,14 +152,53 @@
                     <view key="view" contentMode="scaleToFill" id="7IX-DP-QSK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="DZw-nD-SzO">
+                                <rect key="frame" x="0.0" y="140" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="201-Er-uvf">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem title="Item" image="arrowshape.turn.up.backward" catalog="system" id="NmT-1J-2hX"/>
+                                    <barButtonItem title="Item" image="arrowshape.turn.up.forward" catalog="system" id="7nP-iy-Omu"/>
+                                    <barButtonItem title="Item" image="arrow.clockwise" catalog="system" id="Aii-r9-lb9"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="dIw-2G-Aa8"/>
+                                    <barButtonItem title="Item" image="square.and.arrow.up" catalog="system" id="sTH-6I-sLQ"/>
+                                </items>
+                            </toolbar>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dK5-N3-xhc">
+                                <rect key="frame" x="0.0" y="191" width="414" height="622"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="39I-Jf-Key"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                        <constraints>
+                            <constraint firstItem="dK5-N3-xhc" firstAttribute="trailing" secondItem="39I-Jf-Key" secondAttribute="trailing" id="8ox-ck-rj3"/>
+                            <constraint firstItem="DZw-nD-SzO" firstAttribute="top" secondItem="39I-Jf-Key" secondAttribute="top" id="BjA-Wz-ukD"/>
+                            <constraint firstItem="DZw-nD-SzO" firstAttribute="trailing" secondItem="39I-Jf-Key" secondAttribute="trailing" id="DK4-6C-VJM"/>
+                            <constraint firstItem="201-Er-uvf" firstAttribute="leading" secondItem="39I-Jf-Key" secondAttribute="leading" id="Klc-Qq-fM5"/>
+                            <constraint firstItem="dK5-N3-xhc" firstAttribute="leading" secondItem="39I-Jf-Key" secondAttribute="leading" id="P8a-RZ-1Ig"/>
+                            <constraint firstItem="dK5-N3-xhc" firstAttribute="top" secondItem="DZw-nD-SzO" secondAttribute="bottom" id="XYk-30-AYm"/>
+                            <constraint firstItem="201-Er-uvf" firstAttribute="top" secondItem="dK5-N3-xhc" secondAttribute="bottom" id="aXu-W0-bQV"/>
+                            <constraint firstItem="DZw-nD-SzO" firstAttribute="leading" secondItem="39I-Jf-Key" secondAttribute="leading" id="hFK-Q7-Zmq"/>
+                            <constraint firstItem="201-Er-uvf" firstAttribute="bottom" secondItem="39I-Jf-Key" secondAttribute="bottom" id="i6L-QA-oW3"/>
+                            <constraint firstItem="201-Er-uvf" firstAttribute="trailing" secondItem="39I-Jf-Key" secondAttribute="trailing" id="v38-so-djU"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Browser" id="5Me-vv-7Sj"/>
+                    <connections>
+                        <outlet property="webKitView" destination="dK5-N3-xhc" id="V6w-11-3JH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n3x-Ap-L54" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2210" y="240"/>
+            <point key="canvasLocation" x="2207.2463768115945" y="239.73214285714283"/>
         </scene>
         <!--Safari-->
         <scene sceneID="3IL-mB-kCj">
@@ -197,7 +236,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="arrowshape.turn.up.backward" catalog="system" width="128" height="106"/>
+        <image name="arrowshape.turn.up.forward" catalog="system" width="128" height="106"/>
         <image name="safari" catalog="system" width="128" height="121"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
