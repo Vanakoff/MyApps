@@ -160,11 +160,27 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="201-Er-uvf">
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
-                                    <barButtonItem title="Item" image="arrowshape.turn.up.backward" catalog="system" id="NmT-1J-2hX"/>
-                                    <barButtonItem title="Item" image="arrowshape.turn.up.forward" catalog="system" id="7nP-iy-Omu"/>
-                                    <barButtonItem title="Item" image="arrow.clockwise" catalog="system" id="Aii-r9-lb9"/>
+                                    <barButtonItem title="Item" image="arrowshape.turn.up.backward" catalog="system" id="NmT-1J-2hX">
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="q2D-7p-vUg" id="KeG-Kh-dhO"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Item" image="arrowshape.turn.up.forward" catalog="system" id="7nP-iy-Omu">
+                                        <connections>
+                                            <action selector="forwardButtonPressed:" destination="q2D-7p-vUg" id="caZ-6g-mij"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Item" image="arrow.clockwise" catalog="system" id="Aii-r9-lb9">
+                                        <connections>
+                                            <action selector="refreshButtonPressed:" destination="q2D-7p-vUg" id="sFo-mH-nTS"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="dIw-2G-Aa8"/>
-                                    <barButtonItem title="Item" image="square.and.arrow.up" catalog="system" id="sTH-6I-sLQ"/>
+                                    <barButtonItem title="Item" image="square.and.arrow.up" catalog="system" id="sTH-6I-sLQ">
+                                        <connections>
+                                            <action selector="saveButtonPressed:" destination="q2D-7p-vUg" id="2DY-oY-TrT"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dK5-N3-xhc">
@@ -194,6 +210,7 @@
                     <navigationItem key="navigationItem" title="Browser" id="5Me-vv-7Sj"/>
                     <connections>
                         <outlet property="webKitView" destination="dK5-N3-xhc" id="V6w-11-3JH"/>
+                        <outlet property="webSearchBar" destination="DZw-nD-SzO" id="TXk-vh-D2Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n3x-Ap-L54" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
