@@ -6,80 +6,80 @@
 //
 
 import UIKit
+import CoreData
 
 class TableViewController: UITableViewController {
     
-    let testArray = ["Facebook", "Instagram", "Youtube"]
+    var appsArray = [MyApp]()
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        loadApps()
     }
-
+    
     // MARK: - Table view data source
-
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return testArray.count
+        
+        return appsArray.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
-        cell.textLabel?.text = testArray[indexPath.row]
-
+        
+        cell.textLabel?.text = appsArray[indexPath.row].siteName
+        
         return cell
     }
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    //MARK: - Load Data
+    func loadApps() {
+        let request : NSFetchRequest<MyApp> = MyApp.fetchRequest()
+        
+        do {
+            appsArray = try context.fetch(request)
+        } catch {
+            print("Cannot Fetch data, \(error)")
+        }
+        tableView.reloadData()
     }
-    */
+    
+    func saveApp() {
+        do {
+            try context.save()
+        } catch {
+            print("Cannot save a new app, \(error)")
+        }
+        tableView.reloadData()
+    }
 
-    /*
-    // Override to support editing the table view.
+    
+    //MARK: - Save Data
+    @IBAction func unwind(for segue: UIStoryboardSegue) {
+        guard let settingsVC = segue.source as? SettingsViewController else { return }
+        
+        let newApp = MyApp(context: self.context)
+        newApp.siteName = settingsVC.websiteNameTF.text
+        
+        newApp.siteAddress = settingsVC.websiteURLTV.text
+        
+        appsArray.append(newApp)
+        saveApp()
+    }
+    
+  
+    //MARK: - Delete Data
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            
+            //    testArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
 }
